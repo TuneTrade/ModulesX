@@ -6,7 +6,7 @@ class ERC20 {
             address,
             customABI
     ) {
-        if (customABI === null) {
+        if (typeof(customABI) === "undefined") {
             customABI = abi;
         }
 
@@ -17,7 +17,7 @@ class ERC20 {
     async name() {
         return await this.contract.methods.name().call();
     }
-    
+
     async symbol() {
         return await this.contract.methods.symbol().call();
     }
@@ -63,11 +63,11 @@ class ERC20 {
     }
 
     async balanceOf(address) {
-        return await this.contract.methods.balanceOf().call(address);
+        return await this.contract.methods.balanceOf(address).call();
     }
 
     async allowance(owner, spender) {
-        return await this.contract.methods.allowance().call(owner, spender);
+        return await this.contract.methods.allowance(owner, spender).call();
     }
 }
 
